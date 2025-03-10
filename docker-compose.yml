@@ -1,0 +1,42 @@
+services:
+  nats-server:
+    image: nats:2.10.26-alpine3.21
+    ports:
+      - "8222:8222"  # Puerto de monitoreo de NATS
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - ${PORT_GATEWAY}:${PORT_GATEWAY}
+    volumes:
+      - ./api-gateway/src:/usr/app/src
+    command: npm run start:dev
+    environment:
+      - NATS_SERVERS=nats://nats-server:4222
+
+  user-db:
+    image: postgres:16.2
+    restart: always
+    container_name: users-database
+    environment:
+      POSTGRES_USER: ${DB_USER_USERS}    
+      POSTGRES_PASSWORD: ${DB_PASSWORD_USERS}
+      POSTGRES_DB: ${DB_USERS}
+    volumes:
+      - user-db-data:/var/lib/postgresql/data
+    ports:
+      - ${PORT_DB_USERS}:${PORT_DB_USERS}
+
+  users:
+    depends_on:
+      - user-db
+    build: ./users
+    volumes:
+      - ./users/src:/usr/app/src
+    command: npm run start
+    environment:
+      - NATS_SERVERS=nats://nats-server:4222
+      - DATABASE_URL=${DB_URL_USERS}
+
+volumes:
+  user-db-data:
