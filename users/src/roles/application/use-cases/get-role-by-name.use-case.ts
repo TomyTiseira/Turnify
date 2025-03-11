@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RoleNotFoundException } from 'src/roles/domain/exceptions/role-not-found.exception';
+import { RoleNotFoundException } from 'src/common/domain/exceptions/role-not-found.exception';
 import { RoleRepository } from 'src/roles/domain/ports/role.repository';
 
 @Injectable()
