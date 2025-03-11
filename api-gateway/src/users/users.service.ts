@@ -1,12 +1,12 @@
 import { Injectable, Inject, HttpStatus } from '@nestjs/common';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RegisterUserDto } from './dto/register-user.dto';
-import { NATS_SERVERS } from 'config';
+import { NATS_SERVICE } from 'config';
 import { ClientProxy, RpcException } from '@nestjs/microservices';
 
 @Injectable()
 export class UsersService {
-  constructor(@Inject(NATS_SERVERS) private readonly client: ClientProxy) {}
+  constructor(@Inject(NATS_SERVICE) private readonly client: ClientProxy) {}
 
   create(registerUserDto: RegisterUserDto) {
     return this.client.send('create-user', registerUserDto);
