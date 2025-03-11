@@ -21,5 +21,6 @@ import { RoleRepositoryPostgres } from './infrastructure/out/persistence/role.re
       useClass: RoleRepositoryPostgres,
     },
   ],
+  exports: [RolesService],
 })
 export class RolesModule {}

@@ -13,8 +13,10 @@ import {
   UpdateUserUseCase,
 } from './application/use-cases';
 import { PrismaService } from 'src/common/infrastructure/out/persistence/prisma.service';
+import { RolesModule } from 'src/roles/roles.module';
 
 @Module({
+  imports: [RolesModule],
   controllers: [UsersController],
   providers: [
     PrismaService,
