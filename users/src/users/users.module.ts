@@ -3,7 +3,6 @@ import { UserRepository } from './domain/ports/user.repository';
 import { UserRepositoryPostgres } from './infrastructure/out/persistence/repositories/user.repository.postgres';
 import { UsersController } from './infrastructure/in/controllers/users.controller';
 import { UserService } from './application/services/user.service';
-import { PrismaService } from './infrastructure/out/persistence/prisma.service';
 import { PasswordHasher } from './domain/ports/password-hasher';
 import { BcryptPasswordHasher } from './infrastructure/services/bcrypt-password-hasher';
 import {
@@ -13,10 +12,12 @@ import {
   RegisterUserUseCase,
   UpdateUserUseCase,
 } from './application/use-cases';
+import { PrismaService } from 'src/common/infrastructure/out/persistence/prisma.service';
 
 @Module({
   controllers: [UsersController],
   providers: [
+    PrismaService,
     UserService,
     RegisterUserUseCase,
     ExistsUserUseCase,
@@ -31,7 +32,6 @@ import {
       provide: PasswordHasher,
       useClass: BcryptPasswordHasher,
     },
-    PrismaService,
   ],
 })
 export class UsersModule {}
