@@ -4,6 +4,7 @@ import { RolesController } from './infrastructure/in/controllers/roles.controlle
 import { RolesService } from './application/services/roles.service';
 import {
   CreateRoleUseCase,
+  GetAllRolesUseCase,
   GetRoleByNameUseCase,
 } from './application/use-cases';
 import { RoleRepository } from './domain/ports/role.repository';
@@ -16,6 +17,7 @@ import { RoleRepositoryPostgres } from './infrastructure/out/persistence/role.re
     RolesService,
     CreateRoleUseCase,
     GetRoleByNameUseCase,
+    GetAllRolesUseCase,
     {
       provide: RoleRepository,
       useClass: RoleRepositoryPostgres,

@@ -12,10 +12,10 @@ export class RolesController {
     return this.rolesService.createRole(createRoleDto);
   }
 
-  // @MessagePattern('findAllRoles')
-  // findAll() {
-  //   return this.rolesService.findAll();
-  // }
+  @MessagePattern('find-all-roles')
+  findAll() {
+    return this.rolesService.getAllRoles();
+  }
 
   @MessagePattern('find-role-by-name')
   findOne(@Payload() name: string) {
