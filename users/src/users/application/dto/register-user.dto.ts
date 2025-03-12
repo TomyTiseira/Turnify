@@ -1,5 +1,6 @@
 import {
   IsEmail,
+  IsPhoneNumber,
   IsString,
   IsStrongPassword,
   MinLength,
@@ -27,4 +28,9 @@ export class RegisterUserDto {
     },
   )
   password: string;
+
+  @IsPhoneNumber('AR', {
+    message: 'Número de teléfono inválido para Argentina',
+  })
+  phoneNum: string;
 }
