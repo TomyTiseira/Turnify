@@ -18,6 +18,7 @@ model User {
   name     String
   email    String   @unique
   password String
+  phoneNum String
   isActive Boolean
   role_id  Int
   role     Role     @relation(fields: [role_id], references: [id])
