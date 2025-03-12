@@ -28,11 +28,11 @@ export class RegisterUserUseCase {
       throw new RoleNotFoundException(UserRoles.USER);
     }
 
-    const { name, email, password } = registerUserDto;
+    const { name, email, password, phoneNum } = registerUserDto;
 
     const hashedPassword = await this.passwordHasher.hash(password);
 
-    const user = new User(name, email, hashedPassword, role.id);
+    const user = new User(name, email, hashedPassword, phoneNum, role.id);
 
     const userSaved = await this.userRepository.save(user);
 
