@@ -12,4 +12,9 @@ export abstract class RoleRepository {
    * @param name - Nombre del rol
    */
   abstract getByName(name: string): Promise<Role | null>;
+
+  /**
+   * Obtener todos los roles
+   */
+  abstract getAll(): Promise<Role[]>;
 }

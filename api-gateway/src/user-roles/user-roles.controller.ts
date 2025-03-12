@@ -19,7 +19,11 @@ export class UserRolesController {
 
   @Get()
   findAll() {
-    return this.userRolesService.findAll();
+    return this.userRolesService.findAll().pipe(
+      catchError((error) => {
+        throw new RpcException(error);
+      }),
+    );
   }
 
   @Get(':name')

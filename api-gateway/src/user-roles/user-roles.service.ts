@@ -12,7 +12,7 @@ export class UserRolesService {
   }
 
   findAll() {
-    return `This action returns all userRoles`;
+    return this.client.send('find-all-roles', {});
   }
 
   findOne(name: string) {

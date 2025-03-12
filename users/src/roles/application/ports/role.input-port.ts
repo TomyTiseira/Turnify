@@ -5,4 +5,6 @@ export interface RoleInputPort {
   createRole: (createRoleDto: CreateRoleDto) => Promise<Role>;
 
   getRoleByName: (name: string) => Promise<Role>;
+
+  getAllRoles: () => Promise<Role[]>;
 }

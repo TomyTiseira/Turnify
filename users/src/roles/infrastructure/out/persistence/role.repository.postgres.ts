@@ -14,4 +14,8 @@ export class RoleRepositoryPostgres implements RoleRepository {
   getByName(name: string): Promise<Role | null> {
     return this.database.role.findUnique({ where: { name } });
   }
+
+  getAll(): Promise<Role[]> {
+    return this.database.role.findMany();
+  }
 }
